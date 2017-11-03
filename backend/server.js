@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Set up Google auth routes
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['email','profile'] }));
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth/google' }),
