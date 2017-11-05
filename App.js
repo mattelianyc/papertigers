@@ -13,8 +13,20 @@ import {
   Text,
   View
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+{/* Components */}
+
 import SafariView from 'react-native-safari-view';
+
+
+{/* Font Awesome :) */}
+import Icon from 'react-native-vector-icons/FontAwesome';
+{/* Image Assets */}
+import PprTgrLogo from './assets/images/papertigerlogo.png';
+
+import TabBar from './components/TabBar';
+
+
 
 export default class App extends Component {
 
@@ -73,8 +85,11 @@ export default class App extends Component {
     const { user } = this.state;
     return (
       <View style={styles.container}>
+        
         { user
+
           ? // Show user info if already logged in
+
             <View style={styles.content}>
               <Text style={styles.header}>
                 Welcome {user.name}!
@@ -83,31 +98,33 @@ export default class App extends Component {
                 <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
               </View>
             </View>
+
           : // Show Please log in message if not
+
             <View style={styles.content}>
               <Text style={styles.header}>
-                Welcome Stranger!
+                Rio Azul & The PAPER TIGER$
               </Text>
               <View style={styles.avatar}>
-                <Icon name="user-circle" size={100} color="rgba(0,0,0,.09)" />
+                <Image source={PprTgrLogo} style={{height: 100, width: 100}} />
               </View>
               <Text style={styles.text}>
-                Please log in to continue {'\n'}
-                to the awesomness
+                Please log in using google(gmail address) to continue {'\n'}
+                to the awesomeness
               </Text>
+              {/* Login buttons */}
+              <View style={styles.buttons}>
+                <Icon.Button
+                  name="google"
+                  backgroundColor="#DD4B39"
+                  onPress={this.loginWithGoogle}
+                  {...iconStyles}
+                >
+                </Icon.Button>
+              </View>
             </View>
         }
-        {/* Login buttons */}
-        <View style={styles.buttons}>
-          <Icon.Button
-            name="google"
-            backgroundColor="#DD4B39"
-            onPress={this.loginWithGoogle}
-            {...iconStyles}
-          >
-            Or with Google
-          </Icon.Button>
-        </View>
+        <TabBar />
       </View>
     );
   }
@@ -115,7 +132,7 @@ export default class App extends Component {
 
 const iconStyles = {
   borderRadius: 10,
-  iconStyle: { paddingVertical: 5 },
+  iconStyle: { paddingLeft: 8, paddingVertical: 4, alignItems: 'center'},
 };
 
 const styles = StyleSheet.create({
@@ -145,6 +162,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333',
     marginBottom: 5,
+    paddingHorizontal: 15,
+    flex: 1,
+    flexDirection: 'row'
   },
   buttons: {
     justifyContent: 'space-around',
@@ -152,4 +172,15 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 30,
   },
+  tabBar: {
+    position: 'absolute',
+    bottom:0,
+    width: '100%',
+  },
+  tabIcon: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flex: 1,
+    paddingHorizontal: 5,
+  }
 });
