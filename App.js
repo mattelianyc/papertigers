@@ -97,6 +97,7 @@ export default class App extends Component {
               <View style={styles.avatar}>
                 <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
               </View>
+              <TabBar />
             </View>
 
           : // Show Please log in message if not
@@ -124,7 +125,6 @@ export default class App extends Component {
               </View>
             </View>
         }
-        <TabBar />
       </View>
     );
   }
