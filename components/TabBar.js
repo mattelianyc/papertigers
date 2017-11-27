@@ -7,12 +7,7 @@ import {
   TabBarIOS
 } from 'react-native';
 
-{/* Image Assets */}
-
-import homeIcon from '../assets/images/home.png';
-import chatIcon from '../assets/images/speech.png';
-import calendarIcon from '../assets/images/time.png';
-import audioIcon from '../assets/images/audio.png';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 export default class TabBar extends Component {
 	state = {
@@ -32,23 +27,23 @@ export default class TabBar extends Component {
         title={options.title}
         selected={this.state.selected === options.id}
         onPress={() => this.selectTab(options.id)}
-        icon={options.icon}
       >
         <View style={styles.container}>
-          <Image source={options.icon} style={styles.icon} />
-          <Text style={styles.title}>{options.title}</Text>
+            <FontAwesome>{options.icon}</FontAwesome>
+            <Text style={styles.title}>{options.title}</Text>
         </View> 
       </TabBarIOS.Item>    
     )
   }
 
   render() {
+    const { selected } = this.state;
     return (
       <TabBarIOS tintColor='#42b49a' style={styles.tabBar}>
-      {this.renderTab({title: 'Home', id: 'home', icon: homeIcon})}
-      {this.renderTab({title: 'Chat', id: 'chat', icon: chatIcon})}
-      {this.renderTab({title: 'Calendar', id: 'calendar', icon: calendarIcon})}
-      {this.renderTab({title: 'Files', id: 'files', icon: audioIcon})}
+      {this.renderTab({title: 'Home', id: 'home', icon: Icons.home})}
+      {this.renderTab({title: 'Chat', id: 'chat', icon: Icons.chat})}
+      {this.renderTab({title: 'Calendar', id: 'calendar', icon: Icons.calendar})}
+      {this.renderTab({title: 'Files', id: 'files', icon: Icons.file})}
       </TabBarIOS>
     )
 	}
@@ -57,10 +52,12 @@ export default class TabBar extends Component {
 
 const styles = StyleSheet.create({
   tabBar: {
-    width: '100%'
+    width: '100%',
   },
   tabItem: {
     display: 'flex',
-    flexDirection: 'row'
+    height:'100%',
+    flexDirection: 'row',
   },
+
 });

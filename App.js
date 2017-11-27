@@ -90,15 +90,12 @@ export default class App extends Component {
 
           ? // Show user info if already logged in
 
-            <View style={styles.content}>
-              <Text style={styles.header}>
-                Welcome {user.name}!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
-              </View>
-              <TabBar />
-            </View>
+
+          <View style={styles.container}>
+
+            <TabBar />
+
+          </View>
 
           : // Show Please log in message if not
 
@@ -157,6 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    marginTop: 60
   },
   text: {
     textAlign: 'center',
